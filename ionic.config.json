@@ -1,0 +1,8 @@
+{
+  "name": "TMDBApi",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular",
+  "id": "56592c0c"
+}
