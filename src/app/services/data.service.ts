@@ -1,4 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable, pipe } from 'rxjs';
+import { map } from 'rxjs/operators'
 
 export interface Message {
   fromName: string;
@@ -6,6 +9,20 @@ export interface Message {
   date: string;
   id: number;
   read: boolean;
+}
+
+export interface IFilm {
+  id: number;
+  original_language: string;
+  original_title: string;
+  overview: string;
+  popularity: number;
+  poster_path: string;
+  release_date: string;
+  title: string;
+  video: boolean;
+  vote_average: number;
+  vote_count: number;
 }
 
 @Injectable({
@@ -71,7 +88,7 @@ export class DataService {
     }
   ];
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   public getMessages(): Message[] {
     return this.messages;
@@ -80,4 +97,31 @@ export class DataService {
   public getMessageById(id: number): Message {
     return this.messages[id];
   }
+
+  public getFilms(searchText: string = 'start', page: number = 1): Observable<IFilm[]> {
+    if (!searchText || searchText.length < 1) {
+      searchText = 'star'
+    }
+    return this.http.get(
+      `https://api.themoviedb.org/3/search/movie?api_key=8f9924092d262f879f8a54dcabd2ce2f&query=${searchText}&language=fr&page=${page}`
+    ).pipe(
+      map((data: any) => {
+        const iFilms: IFilm[] = data.results as IFilm[]
+        return iFilms
+      }
+      )
+    )
+  }
+
+  public getFilmById(id: string): Observable<IFilm> {
+
+    const url = `https://api.themoviedb.org/3/movie/${id}?api_key=8f9924092d262f879f8a54dcabd2ce2f&language=fr`
+    return this.http.get<IFilm>(url)
+
+  }
+
+  getPostPath(poster_path): string {
+    return `https://image.tmdb.org/t/p/w300${poster_path}`;
+  }
+
 }

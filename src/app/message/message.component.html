@@ -1,16 +1,45 @@
-<ion-item *ngIf="message" [routerLink]="'/message/' + message.id" [detail]="false">
-  <div slot="start" [class]="!message.read ? 'dot dot-unread' : 'dot'"></div>
-  <ion-label class="ion-text-wrap">
+<ion-item *ngIf="film" (onclick)="onShow(film)" [detail]="false">
+  <!-- <div slot="start" [class]="!film.video ? 'dot dot-unread' : 'dot'"></div> -->
+  <!-- <div>
+    <ion-img [src]="getFilmImage(film.poster_path)"></ion-img>
+
+    <div>{{ film.title }}</div>
+  </div> -->
+
+  <!-- <img src="assets/img/starwars.jpg" /> -->
+  <div class="film_container">
+    <div>
+      <ion-img
+        class="col poster"
+        [src]="getFilmImage(film.poster_path)"
+      ></ion-img>
+    </div>
+    <div class="film_content">
+      <div class="film_header_container">
+        <div class="film_title">{{ film.title }}</div>
+        <div class="film_vote">{{ film.vote_average }}</div>
+      </div>
+      <div class="film_overview">{{ substring(film.overview) }}</div>
+    </div>
+
+    <div class="col"></div>
+  </div>
+
+  <!-- <ion-label class="ion-text-wrap">
     <h2>
-      {{ message.fromName }}
+      {{ film.title }}
       <span class="date">
-        <ion-note>{{ message.date }}</ion-note>
-        <ion-icon name="chevron-forward" size="small" *ngIf="isIos()"></ion-icon>
+        <ion-note>{{ film.release_date }}</ion-note>
+        <ion-icon
+          name="chevron-forward"
+          size="small"
+          *ngIf="isIos()"
+        ></ion-icon>
       </span>
     </h2>
-    <h3>{{ message.subject }}</h3>
+    <h3>{{ film.original_language }}</h3>
     <p>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      {{ film.overview }}
     </p>
-  </ion-label>
-  </ion-item>
+  </ion-label> -->
+</ion-item>

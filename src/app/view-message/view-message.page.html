@@ -1,29 +1,39 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons>
-      <ion-back-button [text]="getBackButtonText()" defaultHref="/"></ion-back-button>
+      <ion-back-button
+        [text]="getBackButtonText()"
+        defaultHref="/"
+      ></ion-back-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" *ngIf="message">
-  <ion-item>
+<ion-content [fullscreen]="true" *ngIf="film">
+  <ion-card>
+    <!-- <img src="assets/img/starwars.jpg" /> -->
+    <ion-img [src]="getFilmImage()"></ion-img>
+    <ion-card-header>
+      <ion-card-title>{{ film.title }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content> {{ film.overview }} </ion-card-content>
+  </ion-card>
+
+  <!-- <ion-item>
     <ion-icon name="person-circle" color="primary"></ion-icon>
     <ion-label class="ion-text-wrap">
       <h2>
-        {{ message.fromName }}
+        {{ film.original_title }}
         <span class="date">
-          <ion-note>{{ message.date }}</ion-note>
+          <ion-note>{{ film.release_date }}</ion-note>
         </span>
       </h2>
       <h3>To: <ion-note>Me</ion-note></h3>
     </ion-label>
-  </ion-item>
-  
-  <div class="ion-padding">
-    <h1>{{ message.subject }}</h1>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-    </p>
-  </div>
+  </ion-item> -->
+
+  <!-- <div class="ion-padding">
+    <h1>{{ film.title }}</h1>
+    <p>{{film.overview}}</p>
+  </div> -->
 </ion-content>

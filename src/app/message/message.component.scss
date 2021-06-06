@@ -57,3 +57,43 @@ ion-footer ion-title {
   font-size: 11px;
   font-weight: normal;
 }
+
+.poster {
+  width: 120px;
+  height: 180px;
+}
+
+.film_container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  // align-items: start;
+}
+
+.film_content {
+  width: calc(100% - 120px);
+  overflow: hidden;
+}
+
+.film_header_container {
+  display: flex;
+  justify-content: space-between;
+  // align-items: center;
+  padding: 2px;
+}
+
+.film_header_container > * {
+  // border: 1px solid gray;
+}
+.film_title {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+.film_vote {
+  font-size: 19px;
+  font-weight: bold;
+}
+.film_overview {
+  font-size: 13px;
+}
